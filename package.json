@@ -1,0 +1,21 @@
+{
+  "name": "tcc-express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "imagemagick": "^0.1.3",
+    "multer": "*",
+    "nodemon": "^3.0.1"
+  }
+}
