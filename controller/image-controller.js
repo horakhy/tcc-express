@@ -1,4 +1,5 @@
 import imageMagick from 'imagemagick'
+import fs from 'fs'
 
 export const handleImage = (imageData) => {
     const width = 720;
@@ -47,3 +48,31 @@ export const handleImage = (imageData) => {
 
     return outputData;
 }
+
+
+export const readFileImage = (path) => {
+    
+    return fs.readFileSync(path)
+}
+
+// export const getImageFromFile = (path) => {
+    
+//     // return fs.readFileSync(path, {encoding: 'utf8' })
+//     return fs.readFile(path, (err, data)=>{
+//         // error handle
+//         if(err) {
+//             throw err;
+//         }
+        
+//         // get image file extension name
+//         const extensionName = path.extname(path);
+        
+//         // convert image file to base64-encoded string
+//         const base64Image = Buffer.from(data, 'binary').toString('base64');
+        
+//         // combine all strings
+//         const base64ImageStr = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;
+//     })
+// }
+
+
