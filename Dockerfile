@@ -4,6 +4,9 @@ FROM node:18-bullseye-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Install wget
+RUN apt update && apt install wget -y
+
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
@@ -22,7 +25,7 @@ RUN wget https://files.ivanch.me/api/public/dl/iFuXSNhw/small-image.png && \
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 5000
 
 # Command to run the application
 CMD ["node", "index.js"]
