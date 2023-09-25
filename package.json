@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "imagemagick": "^0.1.3",
-    "multer": "*",
     "nodemon": "^3.0.1"
   }
 }

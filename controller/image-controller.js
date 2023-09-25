@@ -55,6 +55,14 @@ export const readFileImage = (path) => {
     return fs.readFileSync(path)
 }
 
+export const saveImage = (imageData) => {
+    fs.writeFile("upload.png", imageData, 'binary', function (err) {
+        if (err) throw err;
+        console.log('File saved.'); 
+        }
+    )
+}
+
 // export const getImageFromFile = (path) => {
     
 //     // return fs.readFileSync(path, {encoding: 'utf8' })

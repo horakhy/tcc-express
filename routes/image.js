@@ -1,6 +1,5 @@
 import express from 'express'
-import { readFileImage } from '../controller/image-controller.js';
-import multer from 'multer'
+import { readFileImage, saveImage } from '../controller/image-controller.js';
 import imageMagick from 'imagemagick'
 
 const router = express.Router();
@@ -46,4 +45,15 @@ router.get('/big-image', (req, res) => {
 
 })
 
+router.post('/save-image', (req, res) => {
+    saveImage(req.body)
+
+    res.status(200).send("Image saved!")
+  })
+
 export default router;
+
+// router.get("/image.png", (req, res) => {
+//     res.sendFile(path.join(__dirname, "./uploads/image.png"));
+//   });
+  
