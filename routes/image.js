@@ -27,7 +27,7 @@ router.post('/blur', (req, res) => {
 
 })
 
-router.get('/small-image', (req, res) => {
+router.get('/load-small-image', (req, res) => {
 
     const image = readFileImage('static/small-image.png')
     res.set('Content-Type', 'image/png');
@@ -36,7 +36,7 @@ router.get('/small-image', (req, res) => {
 
 })
 
-router.get('/big-image', (req, res) => {
+router.get('/load-big-image', (req, res) => {
     
     const image = readFileImage('static/big-image.png')
     res.set('Content-Type', 'image/png');
@@ -45,7 +45,7 @@ router.get('/big-image', (req, res) => {
 
 })
 
-router.post('/save-image', (req, res) => {
+router.post('/save-big-image', (req, res) => {
     saveImage(req.body)
 
     res.status(200).send("Image saved!")

@@ -10,6 +10,14 @@ COPY package*.json ./
 # Install application dependencies
 RUN npm install
 
+RUN wget https://files.ivanch.me/api/public/dl/iFuXSNhw/small-image.png && \
+    wget https://files.ivanch.me/api/public/dl/81Bkht5C/big-image.png && \
+    wget https://files.ivanch.me/api/public/dl/nAndfAjK/video.mp4 && \
+    mkdir -p ./static && \
+    mv small-image.png ./static && \
+    mv big-image.png ./static && \
+    mv video.mp4 ./static
+
 # Copy the rest of the application source code
 COPY . .
 
