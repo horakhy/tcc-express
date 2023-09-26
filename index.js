@@ -20,4 +20,4 @@ app.use('/image', imageRoutes);
 
 app.get('/status/ok', (req, res) => res.status(200).send());
 
-app.listen(PORT, () => console.log("BRUHHH, it's live in:", PORT));
+app.listen(PORT, () => console.log("Express running on port ", PORT));

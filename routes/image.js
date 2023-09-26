@@ -1,59 +1,43 @@
 import express from 'express'
-import { readFileImage, saveImage } from '../controller/image-controller.js';
-import imageMagick from 'imagemagick'
+import { readFileImage, saveImage, blurImage } from '../controller/image-controller.js';
 
 const router = express.Router();
-// const upload = multer({dest: 'facade/images'})
 
-// All routes in here start with /image
 router.post('/blur', (req, res) => {
-    console.log(req.body)
-    console.log(typeof req.body)
-
     if (!req.body || !Buffer.isBuffer(req.body)) {
         return res.status(400).json({ error: 'Invalid image data' });
     }
-    // const imageData = handleImage(req.body)
+    const radius = req.query.radius;
 
-    // Convert the binary image data to a Buffer
+    if (!radius || isNaN(radius) || radius < 0) {
+        return res.status(400).json({ error: 'Invalid radius' });
+    }
 
-    // const imageBuffer = Buffer.from(imageData, 'binary');
+    const imageData = blurImage(req.body.toString('base64'), radius);
 
-    // Set the appropriate headers for the image response
-    res.set('Content-Type', 'image/png'); // Adjust content type based on your image format
-
-    // Send the image buffer as the response
-    res.send(req.body);
-
+    res.set('Content-Type', 'image/png');
+    res.send(imageData);
 })
 
 router.get('/load-small-image', (req, res) => {
+    const image = readFileImage('static/small-image.png');
 
-    const image = readFileImage('static/small-image.png')
     res.set('Content-Type', 'image/png');
-
-    res.send(image)
-
+    res.send(image);
 })
 
 router.get('/load-big-image', (req, res) => {
-    
-    const image = readFileImage('static/big-image.png')
-    res.set('Content-Type', 'image/png');
+    const image = readFileImage('static/big-image.png');
 
-    res.send(image)
+    res.set('Content-Type', 'image/png');
+    res.send(image);
 
 })
 
 router.post('/save-big-image', (req, res) => {
-    saveImage(req.body)
+    saveImage(req.body);
 
-    res.status(200).send("Image saved!")
+    res.status(200);
   })
 
 export default router;
-
-// router.get("/image.png", (req, res) => {
-//     res.sendFile(path.join(__dirname, "./uploads/image.png"));
-//   });
-  
