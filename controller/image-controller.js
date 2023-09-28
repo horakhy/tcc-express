@@ -3,27 +3,28 @@ import fs from 'fs';
 
 const { Magick } = IM;
 
-const box_blur_image_separable = (imageData, radius_x, radius_y) => {
-    const blob = new Magick.Blob;
+const box_blur_image_separable = (imageBlob, radius_x, radius_y) => {
     let image = new Magick.Image();
-    blob.base64(imageData);
-    image.read(blob);
-    let blurredImage = image.clone(image);
+    image.read(imageBlob);
+    let blurredImage = new Magick.Image();
+    blurredImage.read(imageBlob);
 
     let kernel_x_size = 2 * radius_x + 1;
     let kernel_y_size = 2 * radius_y + 1;
     let kernel_area = kernel_x_size * kernel_y_size;
+    let height = image.size().height();
+    let width = image.size().width();
 
-    for (let y = 0; y < image.size().height(); y++) {
-        for (let x = 0; x < image.size().width(); x++) {
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
             let r_total = 0, g_total = 0, b_total = 0;
 
-            for (let offset_y = -radius_y; offset_y < radius_y + 1; offset_y++) {
-                for (let offset_x = -radius_x; offset_x < radius_x + 1; offset_x++) {
+            for (let offset_y = -radius_y; offset_y <= radius_y; offset_y++) {
+                for (let offset_x = -radius_x; offset_x <= radius_x; offset_x++) {
                     let new_x = x + offset_x;
                     let new_y = y + offset_y;
 
-                    if (0 <= new_x && new_x < image.size().width() && 0 <= new_y && new_y < image.size().height()) {
+                    if (0 <= new_x && new_x < width && 0 <= new_y && new_y < height) {
                         let pixel = image.pixelColor(new_x, new_y);
 
                         r_total += pixel.quantumRed();
@@ -45,13 +46,15 @@ const box_blur_image_separable = (imageData, radius_x, radius_y) => {
 }
 
 export const blurImage = (imageData, radius) => {
-    let image = box_blur_image_separable(imageData, radius, 0);
-    let blob = new Magick.Blob;
-    image.write(blob);
-    image = box_blur_image_separable(blob.base64(), 0, radius);
-    image.write(blob);
+    let imageBlob = new Magick.Blob;
+    imageBlob.base64(imageData);
 
-    return blob.data();
+    let image = box_blur_image_separable(imageBlob, radius, 0);
+    image.write(imageBlob);
+    image = box_blur_image_separable(imageBlob, 0, radius);
+    image.write(imageBlob);
+
+    return imageBlob.data();
 }
 
 export const readFileImage = (path) => {
