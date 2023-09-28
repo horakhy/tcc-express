@@ -49,12 +49,22 @@ export const blurImage = (imageData, radius) => {
     let imageBlob = new Magick.Blob;
     imageBlob.base64(imageData);
 
+    let image = new Magick.Image();
+    image.read(imageBlob);
+
+    image.gaussianBlur(parseFloat(radius), parseFloat(radius));
+    image.write(imageBlob);
+
+    return imageBlob.data();
+
+    /*
     let image = box_blur_image_separable(imageBlob, radius, 0);
     image.write(imageBlob);
     image = box_blur_image_separable(imageBlob, 0, radius);
     image.write(imageBlob);
 
     return imageBlob.data();
+    */
 }
 
 export const readFileImage = (path) => {
