@@ -37,7 +37,7 @@ router.get('/load-big-image', (req, res) => {
 router.post('/save-big-image', (req, res) => {
     saveImage(req.body);
 
-    res.status(200);
+    res.status(200).send({ status: '200' });
   })
 
 export default router;

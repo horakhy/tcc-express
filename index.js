@@ -18,6 +18,6 @@ app.use('/static', express.static(__dirname + '/static'));
 
 app.use('/image', imageRoutes);
 
-app.get('/status/ok', (req, res) => res.status(200).send());
+app.get('/status/ok', (req, res) => res.status(200).send({status: '200'}));
 
 app.listen(PORT, () => console.log("Express running on port ", PORT));
