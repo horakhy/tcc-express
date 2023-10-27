@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import imageRoutes from './routes/image.js'
+import simulationRoutes from './routes/simulation.js'
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -16,7 +16,7 @@ app.use(bodyParser.raw({
 }));
 app.use('/static', express.static(__dirname + '/static'));
 
-app.use('/image', imageRoutes);
+app.use('/simulation', simulationRoutes);
 
 app.get('/status/ok', (req, res) => res.status(200).send({status: '200'}));
 

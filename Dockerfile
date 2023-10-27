@@ -16,10 +16,12 @@ RUN npm install
 RUN wget https://files.ivanch.me/api/public/dl/iFuXSNhw/small-image.png && \
     wget https://files.ivanch.me/api/public/dl/81Bkht5C/big-image.png && \
     wget https://files.ivanch.me/api/public/dl/nAndfAjK/video.mp4 && \
+    wget https://files.ivanch.me/api/public/dl/RzXwJG7o/nginx.html && \
     mkdir -p ./static && \
     mv small-image.png ./static && \
     mv big-image.png ./static && \
-    mv video.mp4 ./static
+    mv video.mp4 ./static && \
+    mv nginx.html ./static
 
 # Copy the rest of the application source code
 COPY . .
