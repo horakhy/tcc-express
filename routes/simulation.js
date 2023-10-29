@@ -16,4 +16,10 @@ router.get('/harmonic-progression', (req, res) => {
     });
 })
 
+router.get('/json', (req, res) => {
+    res.json({
+        message: 'Hello World!'
+    });
+})
+
 export default router;
