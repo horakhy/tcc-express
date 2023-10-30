@@ -18,6 +18,6 @@ app.use('/static', express.static(__dirname + '/static'));
 
 app.use('/simulation', simulationRoutes);
 
-app.get('/status/ok', (req, res) => res.status(200));
+app.get('/status/ok', (req, res) => res.status(200).send());
 
 app.listen(PORT, () => console.log("Express running on port ", PORT));

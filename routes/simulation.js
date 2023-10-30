@@ -11,9 +11,7 @@ router.get('/harmonic-progression', (req, res) => {
         sum += 1 / i;
     }
 
-    res.json({
-        sum
-    });
+    res.json(sum);
 })
 
 router.get('/json', (req, res) => {
