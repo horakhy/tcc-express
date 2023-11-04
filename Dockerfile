@@ -13,10 +13,10 @@ COPY package*.json ./
 # Install application dependencies
 RUN npm install
 
-RUN wget https://files.ivanch.me/api/public/dl/iFuXSNhw/small-image.png && \
-    wget https://files.ivanch.me/api/public/dl/81Bkht5C/big-image.png && \
-    wget https://files.ivanch.me/api/public/dl/nAndfAjK/video.mp4 && \
-    wget https://files.ivanch.me/api/public/dl/RzXwJG7o/nginx.html && \
+RUN wget https://files.ivanch.me/api/public/dl/a8pf5HZL/small-image.png && \
+    wget https://files.ivanch.me/api/public/dl/ZoZDck7M/big-image.png && \
+    wget https://files.ivanch.me/api/public/dl/URuFVrtX/video.mp4 && \
+    wget https://files.ivanch.me/api/public/dl/aeZqpr_F/nginx.html && \
     mkdir -p ./static && \
     mv small-image.png ./static && \
     mv big-image.png ./static && \
