@@ -11,6 +11,10 @@ export const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 5000;
 
+app.use(bodyParser.raw({
+    type: 'image/png',
+    limit: '20mb'
+}));
 app.use(express.json());
 
 app.use('/static', express.static(__dirname + '/static'));

@@ -6,8 +6,7 @@ export const readFileImage = (path) => {
 
 export const saveImage = (imageData) => {
     fs.writeFile("upload.png", imageData, 'binary', function (err) {
-        if (err) throw err;
-        console.log('File saved.');
-        }
-    )
+        if (err)
+            throw err;
+    })
 }
