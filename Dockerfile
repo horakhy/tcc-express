@@ -5,7 +5,7 @@ FROM node:18-bullseye-slim
 WORKDIR /app
 
 # Install wget
-RUN apt update && apt install wget imagemagick -y
+RUN apt update && apt install wget -y
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
